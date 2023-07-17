@@ -1,0 +1,83 @@
+<!-- MENU AGENDA  -->
+
+{% load static %}
+
+<div class="col-md-6 col-lg-4 order-2 mb-4">
+    <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="card-title m-0 me-2" id="vertical-example" >Catatan</h5>
+            <a href="{% url 'tambah-agenda-page' %}" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                data-bs-offset="0,4" data-bs-placement="left" data-bs-html="true"
+                title="<i class='' ></i> <span>Tambah Agenda</span>">
+                <i class='bx bx-plus'></i></a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless border-bottom">
+                <thead>
+                    <tr>
+                        <th class="text-nowrap">Agenda</th>
+                        <th class="text-nowrap">Hari</th>
+                        <th class="text-nowrap text-center">Terlaksana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for agenda_stunting in agenda %}
+                    <tr>
+                        <td class="text-nowrap">{{agenda_stunting.kegiatan}}</td>
+                        <td class="text-nowrap">{{agenda_stunting.hari}}</td>
+                        <td>
+                            <div class="form-check d-flex justify-content-center">
+                                <a onclick="elementdata({{agenda_stunting.id}})" href="#" class="btn btn-icon btn-outline-primary" type="checkbox" id="defaultCheck1"
+                                    data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="left"
+                                    data-bs-html="true"
+                                    title="<i class='bx bx-trash' ></i> <span>Hapus Agenda</span>"><i class="bx bx-check"></i></a>
+                                    <box-icon name='checkbox-checked'></box-icon>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if messages %}
+
+    {% for m in messages %}
+
+    <script>
+        Swal.fire({
+            'title': '',
+            'text': '{{m}}',
+            'icon': 'success',
+        })
+    </script>
+
+    {% endfor %}
+
+
+{% endif %}
+{% for agenda_stunting in agenda %}
+<script>
+    function elementdata(id){
+        Swal.fire({
+            'title': 'Apakah agenda ini sudah selesai ?',
+            'icon': 'question',
+            'showCancelButton': true,
+            'confirmButtonColor': '#dc3545',
+            'confirmButtonText': 'Sudah',
+            'reverseButtons':true,
+            'cancelButtonText': 'Cencel',
+
+        })
+        .then(function(result){
+            if (result.isConfirmed) {
+                window.location.href = "delete_agenda/"+id
+                }
+            })
+        }
+        
+</script>
+{% endfor %}

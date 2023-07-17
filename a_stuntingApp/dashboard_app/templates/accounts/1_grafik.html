@@ -1,0 +1,151 @@
+<!-- GRAFIK  -->
+
+{% load static %}
+
+<div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+    <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between pb-0">
+            <div class="card-title mb-0">
+                <h5 class="m-0 me-2">Jumlah Status Gizi Balita</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex flex-column align-items-center gap-1">
+                    <span>Total Balita : {{l_P_Br_gab}}</span>
+                </div>
+
+                <!-- isi diagram lingkaran disini nanti -->
+                <!-- <div id="orderStatisticsChart"></div> -->
+            </div>
+            <ul class="p-0 m-0">
+                <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                        <div class="avatar flex-shrink-0">
+                            <img src="{% static 'assets/img/icons/unicons/baby.png' %}" alt="Credit Card"
+                                class="rounded" />
+                        </div>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                        <div class="me-2">
+                            <h6 class="mb-0">Balita Tinggi</h6>
+                            <small class="text-muted">Z Score > 3</small>
+                        </div>
+                        <div class="user-progress">
+                            <small class="fw-semibold">{{tb_tinggi_gab}}</small>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                        <span class="avatar-initial rounded bg-label-success">
+                            <div class="avatar flex-shrink-0">
+                                <img src="{% static 'assets/img/icons/unicons/baby.png' %}" alt="Credit Card"
+                                    class="rounded" />
+                            </div>
+                        </span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                        <div class="me-2">
+                            <h6 class="mb-0">Balita Normal</h6>
+                            <small class="text-muted">Z Score 1-3</small>
+                        </div>
+                        <div class="user-progress">
+                            <small class="fw-semibold">{{tb_normal_br_gab}}</small>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                        <span class="avatar-initial rounded bg-label-info">
+                            <div class="avatar flex-shrink-0">
+                                <img src="{% static 'assets/img/icons/unicons/baby.png' %}" alt="Credit Card"
+                                    class="rounded" />
+                            </div>
+                        </span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                        <div class="me-2">
+                            <h6 class="mb-0">Balita Pendek</h6>
+                            <small class="text-muted">Z Score -3 s/d 1</small>
+                        </div>
+                        <div class="user-progress">
+                            <small class="fw-semibold">{{tb_pendek_br_gab}}</small>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="avatar flex-shrink-0 me-3">
+                        <span class="avatar-initial rounded bg-label-secondary">
+                            <div class="avatar flex-shrink-0">
+                                <img src="{% static 'assets/img/icons/unicons/baby.png' %}" alt="Credit Card"
+                                    class="rounded" />
+                            </div>
+                        </span>
+                    </div>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                        <div class="me-2">
+                            <h6 class="mb-0">Balita Sangat Pendek</h6>
+                            <small class="text-muted">Z Score < -3</small>
+                        </div>
+                        <div class="user-progress">
+                            <small class="fw-semibold">{{tb_sangat_pendek_br_gab}}</small>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- GRAFIK GARIS -->
+
+<div class="col-md-6 col-lg-4 order-1 mb-4">
+    <div class="card h-100">
+        <div class="card-header">
+            <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                    <h5 class="card-title text-primary">Grafik Status Gizi Berdasarkan Panjang Badan</h5>
+                </li>
+            </ul>
+            <small>Total Balita : {{l_P_Br_gab}}</small>
+        </div>
+        <div class="card-body px-0">
+            <div class="tab-content p-0">
+                <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">   
+                         <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Tinggi', 'Normal', 'Pendek', 'Sangat Pendek'],
+        datasets: [{
+          label: 'Jumlah Balita',
+          data: ['{{tb_tinggi_gab}}', '{{tb_normal_br_gab}}','{{tb_pendek_br_gab}}','{{tb_sangat_pendek_br_gab}}'],
+          backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)',
+      'rgb(205, 205, 81)'
+    ],
+    hoverBorderWidth:[
+        5
+    ],
+        }]
+      },
+    });
+  </script>

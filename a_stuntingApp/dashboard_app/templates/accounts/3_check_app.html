@@ -1,0 +1,368 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/"
+    data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Check Stunting</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/icons/unicons/dashboard-apps.png' %}" />
+
+    <meta name="description" content="" />
+
+    <!-- PLUGIN CSS -->
+    <link rel="icon" type="image/x-icon" href="ISILOGOMU" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/boxicons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/core.css' %}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/theme-default.css' %}"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/apex-charts/apex-charts.css' %}" />
+    <link href="{%static 'assets/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    <!-- PLUGIN JS UNTUK TAMPILAN -->
+    <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
+    <script src="{% static 'assets/js/config.js' %}"></script>
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+
+
+            <!-- Menu dan Logo Pojok Kiri dan Navbar -->
+            {% include 'accounts/1_side_bar.html' %}
+            <!-- Menu dan Logo Pojok Kiri dan Navbar -->
+
+
+            <!-- Layout container -->
+            <div class="layout-page">
+
+                {% include 'accounts/1_navbar.html' %}
+
+
+                <!-- Content dan Menu -->
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        
+                        <!-- KONTEN JUDUL -->
+                        <div class="row">
+                            <div class="col-lg-12 mb-0 order-0">
+                                <div class="card">
+                                    <div class="d-flex align-items-end row">
+                                        <div class="col-sm-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary">Stunting Pada Baita</h5>
+                                                <a href="{% url 'stunting-info' %}" class="btn btn-sm btn-outline-primary">Lihat</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 text-center text-sm-left">
+                                            <div class="card-body pb-0 px-0 px-md-4">
+                                                <img src="{% static 'assets/img/illustrations/kids.png' %}" height="140"
+                                                    alt="View Badge User"
+                                                    data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                                    data-app-light-img="illustrations/kids.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Database -->
+                        <div class="row">
+                            <!-- Judul-->
+                            <div class="col-xxl">
+                                <div class="card mb-4 mt-3">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <h2 class="mb-0">Input Data Balita</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- INI FORM PENTING -->
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Nama</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="nama" class="form-control" id="basic-default-name"
+                                                        placeholder="Masukan Nama"  required/>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Jenis Kelamin</label>
+                                                <div class="col-sm-10">
+                                                    <select  name="jenis_kelamin" class="form-control" onchange="ubah(this)" id="basic-default-name" required>
+                                                        <option value="">-------------------</option>
+                                                        <option value="laki-laki">laki-laki</option>
+                                                        <option value="perempuan">perempuan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label  class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Status Ekonomi</label>
+                                                <div class="col-sm-10">
+                                                    <select name="status_ekonomi" class="form-control" onchange="ubah(this)" id="basic-default-name" required>
+                                                        <option value="">-------------------</option>
+                                                        <option value="Mampu">Mampu</option>
+                                                        <option value="Kurang Mampu">Kurang Mampu</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Usia Ukur</label>
+                                                <div class="col-sm-10">
+                                                    <select  name="usia_ukur" class="form-control" onchange="ubah(this)" id="basic-default-name" required>
+                                                        <option value="">-------------------</option>
+                                                        <option value="Kurang Dari 3 Tahun">Kurang Dari 3 Tahun</option>
+                                                        <option value="3 Tahun">3 Tahun</option>
+                                                        <option value="Lebih Dari 3 Tahun">Lebih Dari 3 Tahun</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Berat Badan / Umur</label>
+                                                <div class="col-sm-10">
+                                                    <select  name="bb_u" class="form-control" onchange="ubah(this)" id="basic-default-name" required>
+                                                        <option value="">-------------------</option>
+                                                        <option value="BB Normal">BB Normal</option>
+                                                        <option value="BB Kurang">BB Kurang</option>
+                                                        <option value="BB Sangat Kurang">BB Sangat Kurang</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Tinggi Badan / Umur</label>
+                                                <div class="col-sm-10">
+                                                    <select  name="tb_u" class="form-control" onchange="ubah(this)" id="basic-default-name" required>
+                                                        <option value="">-------------------</option>
+                                                        <option value="TB Normal">TB Normal</option>
+                                                        <option value="TB Pendek">TB Pendek</option>
+                                                        <option value="TB Sangat Pendek">TB Sangat Pendek</option>
+                                                        <option value="TB Tinggi">TB Tinggi</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-default-name">Status Gizi</label>
+                                                <div class="col-sm-10">
+                                                    <select  name="status_gizi" class="form-control" onchange="ubah(this)" id="basic-default-name" required>
+                                                        <option value="">-------------------</option>
+                                                        <option value="Gizi Baik">Gizi Baik</option>
+                                                        <option value="Gizi Kurang">Gizi Kurang</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-primary">Lihat
+                                                        Prediksi</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MENUNJUKAN HASIL PREDIKSI -->
+                        {% if result %}
+                        <div class="row">
+                            <!-- Basic Layout -->
+                            <div class="col-xxl">
+                                <div class="card mb-4 mt-0">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <h2 class="mb-0">Hasil Prediksi Machine Learning By Library Python : </h2>
+                                        <a href="{% url 'prediksi-page-library' %}" 
+                                            class="btn btn-outline-primary" 
+                                            data-bs-toggle="tooltip" 
+                                            data-bs-offset="0,4" 
+                                            data-bs-placement="left" 
+                                            data-bs-html="true" 
+                                            title="<i class='bx bx-search bx-xs' ></i> <span>Ulangi Prediksi</span>" >
+                                            <i class='bx bx-bolt-circle'></i></a>
+                                            
+                                    </div>
+                                    <div class="col-xl-5-ml-3">
+                                          <div class="card-body">
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Nama</label>
+                                                <div class="col-sm-10">
+                                                    {% if nama %}
+                                                    <h6 class="card-title">{{nama}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Jenis Kelamin</label>
+                                                <div class="col-sm-10">
+                                                    {% if jenis_kelamin %}
+                                                    <h6 class="card-title">{{jenis_kelamin}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Status Ekonomi</label>
+                                                <div class="col-sm-10">
+                                                    {% if status_ekonomi %}
+                                                    <h6 class="card-title">{{status_ekonomi}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Usia Saat Ukur</label>
+                                                <div class="col-sm-10">
+                                                    {% if usia_ukur %}
+                                                    <h6 class="card-title">{{usia_ukur}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div> 
+
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Berat Badan / Umur</label>
+                                                <div class="col-sm-10">
+                                                    {% if bb_u %}
+                                                    <h6 class="card-title">{{bb_u}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Tinggi Badan / Umur</label>
+                                                <div class="col-sm-10">
+                                                    {% if tb_u %}
+                                                    <h6 class="card-title">{{tb_u}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label class="col-xl-2 col-form-label"
+                                                    for="basic-default-name">Status Gizi</label>
+                                                <div class="col-sm-10">
+                                                    {% if status_gizi %}
+                                                    <h6 class="card-title">{{status_gizi}}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            
+                                            <div class="row mb-3">
+                                                <div class="alert alert-primary alert-dismissible" role="alert">
+                                                    <h5 style="text-align: center;"><strong>{{result}}</strong></h5><br>
+                                                    <h5 style="text-align: center;"><strong>{{akurasi}}</strong></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div
+                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with 🚀 by
+                                <a href="#" target="_blank" class="footer-link fw-bolder">Dodik Sukma</a>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- / Footer -->
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content dan Menu -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+
+    <!-- JS PLUGIN -->
+    <script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+    <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/apex-charts/apexcharts.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/dashboards-analytics.js' %}"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'assets/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable(); // ID From dataTable 
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+
+        function ubah(t){
+            console.log('masuk');
+            if(t.value == 'perempuan'){
+                $('#h1').prop('hidden',true)
+            }
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+
+        {% for m in messages %}
+
+        <script>
+            Swal.fire({
+                'title': '',
+                'text': '{{m}}',
+                'icon':'success',
+            })
+        </script>
+
+        {% endfor %}
+
+
+    {% endif %}
+</body>
+
+</html>

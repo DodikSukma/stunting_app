@@ -1,0 +1,460 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/"
+    data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Data Hasil Prediksi</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/icons/unicons/dashboard-apps.png' %}" />
+
+    <meta name="description" content="" />
+
+    <!-- PLUGIN CSS -->
+    <link rel="icon" type="image/x-icon" href="ISILOGOMU" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/boxicons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/core.css' %}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/theme-default.css' %}"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/apex-charts/apex-charts.css' %}" />
+    <link href="{%static 'assets/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    <!-- PLUGIN JS UNTUK TAMPILAN -->
+    <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
+    <script src="{% static 'assets/js/config.js' %}"></script>
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+
+
+            <!-- Menu dan Logo Pojok Kiri dan Navbar -->
+            {% include 'accounts/1_side_bar.html' %}
+            <!-- Menu dan Logo Pojok Kiri dan Navbar -->
+
+
+            <!-- Layout container -->
+            <div class="layout-page">
+
+                {% include 'accounts/1_navbar.html' %}
+
+
+                <!-- Content dan Menu -->
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+
+                        <!-- KONTEN JUDUL -->
+                        <div class="row">
+                            <div class="col-lg-12 mb-0 order-0">
+                                <div class="card">
+                                    <div class="d-flex align-items-end row">
+                                        <div class="col-sm-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary">Stunting Pada Baita</h5>
+                                                <a href="{% url 'stunting-info' %}"
+                                                    class="btn btn-sm btn-outline-primary">Lihat</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 text-center text-sm-left">
+                                            <div class="card-body pb-0 px-0 px-md-4">
+                                                <img src="{% static 'assets/img/illustrations/kids.png' %}" height="140"
+                                                    alt="View Badge User"
+                                                    data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                                    data-app-light-img="illustrations/kids.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Database -->
+                        <div class="row">
+                            <!-- Basic Layout -->
+                            <div class="col-xxl">
+                                <div class="card mb-4 mt-3">
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-success">Rekap Data Hasil Prediksi</h6>
+                                        <a class="btn btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalTop"><i class="bx bx-info-circle"></i> Informasi
+                                            Data</a>
+                                        <a href="{% url 'rekap_prediksi' %}" class="btn btn-success"><i
+                                                class="bx bx-plus"></i> Lakukan Prediksi </a>
+                                    </div>
+                                    <div class="table-responsive p-3">
+                                        <table class="table align-items-center table-flush table-hover"
+                                            id="dataTableHover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nama</th>
+                                                    <th>JK</th>
+                                                    <th>KK_KM</th>
+                                                    <th>Usia_Ukur</th>
+                                                    <th>BB/U</th>
+                                                    <th>TB/U</th>
+                                                    <th>BB/TB</th>
+                                                    <th>Prediksi</th>
+                                                    <th>Tanggal Prediksi</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nama</th>
+                                                    <th>JK</th>
+                                                    <th>KK_KM</th>
+                                                    <th>Usia_Ukur</th>
+                                                    <th>BB/U</th>
+                                                    <th>TB/U</th>
+                                                    <th>BB/TB</th>
+                                                    <th>Prediksi</th>
+                                                    <th>Tanggal Prediksi</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                {% for data_cek in predicted_stunted %}
+                                                <tr>
+                                                    <td>{{ forloop.counter }}</td>
+                                                    <td>{{data_cek.nama}}</td>
+                                                    <td>
+                                                      {% if data_cek.jk == 1 %}
+                                                        laki-laki
+                                                      {% elif data_cek.jk == 0 %}
+                                                        perempuan
+                                                      {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if data_cek.status_KM == 0 %}
+                                                        Mampu
+                                                        {% elif data_cek.status_KM == 1 %}
+                                                        Kurang Mampu
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if data_cek.usia_ukur == 1 %}
+                                                        Lebih dari 3 Tahun
+                                                        {% elif data_cek.usia_ukur == 2 %}
+                                                        Kurang dari 3 Tahun
+                                                        {% elif data_cek.usia_ukur == 0 %}
+                                                        3 Tahun
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if data_cek.bb_u == 1 %}
+                                                        BB Normal
+                                                        {% elif data_cek.bb_u == 2 %}
+                                                        BB Kurang
+                                                        {% elif data_cek.bb_u == 0 %}
+                                                        BB Sangat Kurang
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if data_cek.tb_u == 1 %}
+                                                        TB Normal
+                                                        {% elif data_cek.tb_u == 2 %}
+                                                        TB Sangat Pendek
+                                                        {% elif data_cek.tb_u == 0 %}
+                                                        TB Pendek
+                                                        {% elif data_cek.tb_u == 3 %}
+                                                        TB Tinggi
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if data_cek.bb_tb == 1 %}
+                                                        Gizi Baik
+                                                        {% elif data_cek.bb_tb == 0 %}
+                                                        Gizi Kurang
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>{{data_cek.predictions}}</td>
+                                                    <td>{{data_cek.date}}</td>
+                                                    <td>
+                                                        <a onclick="elementdata_rekap({{data_cek.id}})" href="#"
+                                                            class="btn btn-danger">
+                                                            <i class="bx bx-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal modal-top fade" id="modalTop" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="container">
+                                    <div class="card-body">
+                                        <h5 style="text-align: center;" class="card-title text-primary">Informasi
+                                            Atribut</h5>
+                                        <div class="row">
+                                            <!-- Display headings -->
+                                            <div class="col-lg">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align: center;" class="card-title text-primary">Jenis Kelamin</h5>
+                                                        <table>
+                                                            <tr>
+                                                                <th>Jenis Kelamin</th>
+                                                                <th>Code</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Laki-Laki</td>
+                                                                <td style="text-align: center;">1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Perempuan</td>
+                                                                <td style="text-align: center;">0</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Paragraph -->
+                                            <div class="col-lg">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align: center;" class="card-title text-primary">Usia ukur</h5>
+                                                        <table>
+                                                            <tr>
+                                                                <th>Usia ukur (th)</th>
+                                                                <th>Code</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Lebih dari 3</td>
+                                                                <td style="text-align: center;">1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3 Tahun</td>
+                                                                <td style="text-align: center;">0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Kurang dari 3</td>
+                                                                <td style="text-align: center;">2</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align: center;" class="card-title text-primary">Status Gizi</h5>
+                                                        <table>
+                                                            <tr>
+                                                                <th>Status</th>
+                                                                <th>Code</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Gizi Baik</td>
+                                                                <td style="text-align: center;">1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Gizi Kurang</td>
+                                                                <td style="text-align: center;">0</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align: center;" class="card-title text-primary">Status Ekonomi</h5>
+                                                        <table>
+                                                            <tr>
+                                                                <th>Status</th>
+                                                                <th>Code</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Mampu</td>
+                                                                <td style="text-align: center;">1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Kurang Mampu</td>
+                                                                <td style="text-align: center;">0</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align: center;" class="card-title text-primary">Berat Badan / Umur</h5>
+                                                        <table>
+                                                            <tr>
+                                                                <th>BB/U</th>
+                                                                <th>Code</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>BB Normal</td>
+                                                                <td style="text-align: center;">1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>BB Kurang</td>
+                                                                <td style="text-align: center;">2</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>BB Sangat Kurang</td>
+                                                                <td style="text-align: center;">0</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align: center;" class="card-title text-primary">Tinggi badan / umur</h5>
+                                                        <table>
+                                                            <tr>
+                                                                <th>TB/U</th>
+                                                                <th>Code</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>TB Tinggi</td>
+                                                                <td style="text-align: center;">3</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>TB Normal</td>
+                                                                <td style="text-align: center;">1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>TB Pendek</td>
+                                                                <td style="text-align: center;">0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>TB Sangat Pendek</td>
+                                                                <td style="text-align: center;">2</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            , made with 🚀 by
+                            <a href="#" target="_blank" class="footer-link fw-bolder">Dodik Sukma</a>
+                        </div>
+                    </div>
+                </footer>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content dan Menu -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+
+    <!-- JS PLUGIN -->
+    <script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+    <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/apex-charts/apexcharts.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/dashboards-analytics.js' %}"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'assets/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable(); // ID From dataTable 
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+
+        {% for m in messages %}
+
+        <script>
+            Swal.fire({
+                'title': '',
+                'text': '{{m}}',
+                'icon': 'success',
+            })
+        </script>
+
+        {% endfor %}
+
+
+    {% endif %}
+    
+    {% for data_cek in predicted_stunted %}
+    <script>
+        function elementdata_rekap(id){
+            Swal.fire({
+                'title': 'Hapus Data',
+                'text': 'Aapakah anda ingin menghapus data ini ?',
+                'icon': 'question',
+                'showCancelButton': true,
+                'confirmButtonColor': '#dc3545',
+                'confirmButtonText': 'Hapus',
+                'reverseButtons':true,
+                'cancelButtonText': 'Batal',
+
+            })
+            .then(function(result){
+                if (result.isConfirmed) {
+                    window.location.href = "stunting_delete_rekap/"+id
+                    }
+                })
+            }
+            
+    </script>
+    {% endfor %}
+</body>
+
+</html>

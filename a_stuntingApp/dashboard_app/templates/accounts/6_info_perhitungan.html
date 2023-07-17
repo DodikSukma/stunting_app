@@ -1,0 +1,805 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/"
+    data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Menu Database</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/icons/unicons/dashboard-apps.png' %}" />
+
+    <meta name="description" content="" />
+
+    <!-- PLUGIN CSS -->
+    <link rel="icon" type="image/x-icon" href="ISILOGOMU" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/boxicons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/core.css' %}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/css/theme-default.css' %}"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/apex-charts/apex-charts.css' %}" />
+    <link href="{%static 'assets/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    <!-- PLUGIN JS UNTUK TAMPILAN -->
+    <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
+    <script src="{% static 'assets/js/config.js' %}"></script>
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+
+
+            <!-- Menu dan Logo Pojok Kiri dan Navbar -->
+            {% include 'accounts/1_side_bar.html' %}
+            <!-- Menu dan Logo Pojok Kiri dan Navbar -->
+
+
+            <!-- Layout container -->
+            <div class="layout-page">
+
+                {% include 'accounts/1_navbar.html' %}
+
+
+                <!-- Content dan Menu -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+
+                    <!-- Content -->
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <!-- KONTEN JUDUL -->
+                        <div class="row">
+                            <div class="col-lg-12 mb-0 order-0">
+                                <div class="card">
+                                    <div class="d-flex align-items-end row">
+                                        <div class="col-sm-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary">Stunting Pada Baita</h5>
+                                                <a href="{% url 'stunting-info' %}"
+                                                    class="btn btn-sm btn-outline-primary">Lihat</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 text-center text-sm-left">
+                                            <div class="card-body pb-0 px-0 px-md-4">
+                                                <img src="{% static 'assets/img/illustrations/kids.png' %}" height="140"
+                                                    alt="View Badge User"
+                                                    data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                                    data-app-light-img="illustrations/kids.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4 mt-3">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h2 class="mb-0">Model Perhitungan Pengembang</h2>
+                                <a href="#" class="btn btn-outline-success" data-bs-offset="0,4"
+                                    data-bs-placement="left" data-bs-html="true" data-bs-toggle="modal"
+                                    data-bs-target="#modalLong" title="Proses Perghitungan">
+                                    <i class='bx bx-info-circle'></i></a>
+
+
+                                <div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLongTitle">Teknik Perhitungan Naive Bayes</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Naive Bayes adalah sebuah metode klasifikasi yang menggunakan prinsip
+                                                    probabilitas. Untuk menghitung prediksi kelas baru berdasarkan
+                                                    inputan user, langkah-langkah yang harus diikuti adalah sebagai
+                                                    berikut:</p>
+                                                <ol>
+                                                    <li>Menghitung probabilitas prior (P(Y)) untuk setiap kelas. Ini
+                                                        dilakukan dengan membagi jumlah data training pada kelas
+                                                        tersebut dengan total jumlah data training.</li>
+                                                    <li>Menghitung probabilitas kelas kategori (P(X|Y)) untuk setiap
+                                                        atribut pada inputan user.</li>
+                                                    <li>Menghitung probabilitas posterior (P(Y|X)) untuk setiap kelas
+                                                        berdasarkan inputan user.</li>
+                                                    <li>Memilih kelas dengan probabilitas posterior tertinggi sebagai
+                                                        prediksi kelas untuk inputan user.</li>
+                                                </ol>
+                                                <p>Dengan menggunakan metode Naive Bayes, prediksi kelas baru dapat
+                                                    dihitung berdasarkan probabilitas atribut-atribut pada inputan user
+                                                    dan probabilitas prior dari setiap kelas.</p>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-success"
+                                                    data-bs-dismiss="modal">
+                                                    Close
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tabel Model -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="demo-inline-spacing">
+                                            <!-- 1.	Menghitung jumlah variabel Kelas Lebel/Jumlah Data Training -->
+                                            <div class="card">
+                                                <h5 class="card-header">Hasil Perhitungan lumlah
+                                                    variabel Kelas Lebel/Jumlah Data Training</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Label Speisfik/Total Label Data
+                                                                    Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="table-border-bottom-0">
+                                                            <tr class="table-danger">
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Normal/Total Label Data
+                                                                        Training</strong>
+                                                                </td>
+                                                                <td>1601/1712</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.935</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-success">
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Stunting/Total Label Data
+                                                                        Training</strong>
+                                                                </td>
+                                                                <td>25/1712</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.014</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-primary">
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Potensi Stunting/Total Label
+                                                                        Data Training</strong>
+                                                                </td>
+                                                                <td>86/1712</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.050</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- 2.	Menghitung jumlah variabel kelas Jenis Kelamin/Label -->
+                                            <div class="card mt-3">
+                                                <h5 class="card-header">Hasil Perghitungan jumlah
+                                                    variabel kelas Jenis Kelamin/Label</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Variabel Jenis Kelamin/Label
+                                                                    Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <!-- L & P = Stunting -->
+                                                        <tbody class="table-border-bottom-0">
+                                                            <tr class="table-danger">
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Laki-Laki/Stunting</strong>
+                                                                </td>
+                                                                <td>14/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.560</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-danger">
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Perempuan/Stunting</strong>
+                                                                </td>
+                                                                <td>11/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.440</span>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- L & P = Stunting -->
+
+                                                            <!-- L & P = Normal -->
+                                                            <tr class="table-success">
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Laki-Laki/Normal</strong>
+                                                                </td>
+                                                                <td>836/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.522</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-success">
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Perempuan/Normal</strong>
+                                                                </td>
+                                                                <td>765/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.478</span>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- L & P = Normal -->
+
+                                                            <!-- L & P = Potensi Stunting -->
+                                                            <tr class="table-primary">
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Laki-laki/Potensi Stunting</strong>
+                                                                </td>
+                                                                <td>48/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.560</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-primary">
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Perempuan/Potensi Stunting</strong>
+                                                                </td>
+                                                                <td>73/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.442</span>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- L & P = Potensi Stunting -->
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- 3. Menghitung jumlah variabel kelas Usia Ukur/Label -->
+                                            <div class="card mt-3">
+                                                <h5 class="card-header">Hasil Perhitungan jumlah variabel kelas
+                                                    Status Ekonomi/Label</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Variabel Status Ekonomi/Label Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <!-- Mampu & Kurang Mampu = Stunting -->
+                                                        <tbody class="table-danger">
+                                                            <tr>
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Mampu/Stunting</strong>
+                                                                </td>
+                                                                <td>21/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.840</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Kurang Mampu/Stunting</strong>
+                                                                </td>
+                                                                <td>4/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.160</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <!-- Mampu & Kurang Mampu = Stunting -->
+
+                                                        <!-- Mampu & Kurang Mampu = Normal -->
+                                                        <tbody class="table-success">
+                                                            <tr>
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Mampu/Normal</strong>
+                                                                </td>
+                                                                <td>1557/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.973</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Kurang Mampu/Normal</strong>
+                                                                </td>
+                                                                <td>24/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.015</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <!-- Mampu & Kurang Mampu = Normal -->
+
+                                                        <!-- Mampu & Kurang Mampu = Potensi Stunting -->
+                                                        <tbody class="table-primary">
+                                                            <tr>
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Mampu/Potensi Stunting</strong>
+                                                                </td>
+                                                                <td>73/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.849</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Kurang Mampu/Potensi Stunting</strong>
+                                                                </td>
+                                                                <td>13/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.151</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <!-- Mampu & Kurang Mampu = Potensi Stunting -->
+
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- 4. Menghitung jumlah variabel kelas Usia Ukur/Label -->
+                                            <div class="card mt-3">
+                                                <h5 class="card-header">Hasil Perhitungan jumlah variabel kelas Usia
+                                                    Ukur/Label</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Variabel Usia Saat Ukur/Label Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="table-danger">
+                                                            <!-- Usia Saat Ukur Stunting -->
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur = 3 Tahun /
+                                                                        Stunting</strong>
+                                                                </td>
+                                                                <td>9/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.360</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur < 3 Tahun / Stunting</strong>
+                                                                </td>
+                                                                <td>10/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.400</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur > 3 Tahun /
+                                                                        Stunting</strong>
+                                                                </td>
+                                                                <td>6/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.240</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                        <tbody class="table-success">
+                                                            <!-- Usia Saat Ukur = Lebih Dari 3 Tahun -->
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur > 3 Tahun /
+                                                                        Normal</strong>
+                                                                </td>
+                                                                <td>463/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.289</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur < 3 Tahun / Normal</strong>
+                                                                </td>
+                                                                <td>475/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.468</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur = 3 Tahun /
+                                                                        Normal</strong>
+                                                                </td>
+                                                                <td>388/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.242</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody class="table-primary">
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur > 3 Tahun / Potensi
+                                                                        Stunting</strong></td>
+                                                                <td>25/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.291</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur > 3 Tahun / Potensi
+                                                                        Stunting</strong></td>
+                                                                <td>26/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.302</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Usia Saat Ukur < 3 Tahun / Potensi
+                                                                            Stunting</strong>
+                                                                </td>
+                                                                <td>35/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.407</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- 5. Menghitung jumlah variabel kelas (BB/U)/Label -->
+                                            <div class="card mt-3">
+                                                <h5 class="card-header">Hasil Perhitungan jumlah variabel kelas
+                                                    Berat
+                                                    Badan/Umur/Label (BB/U)</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Variabel Berat (BB/U)/Label Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="table-danger">
+                                                            <!-- Berat Badan/Umur = Berat Badan Normal -->
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Kurang /
+                                                                        Stunting</strong></td>
+                                                                <td>19/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.760</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Normal /
+                                                                        Stunting</strong></td>
+                                                                <td>1/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.040</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Sangat Kurang /
+                                                                        Stunting</strong></td>
+                                                                <td>5/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.200</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody class="table-success">
+                                                            <!-- (BB/U) = Berat Badan Kurang -->
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Kurang /
+                                                                        Normal</strong></td>
+                                                                <td>14/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.009</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Normal /
+                                                                        Normal</strong></td>
+                                                                <td>1587/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.991</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Sangat Kurang /
+                                                                        Normal</strong></td>
+                                                                <td>0/1601</td>
+                                                                <td><span class="badge bg-label-success me-1">0</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody class="table-primary">
+                                                            <!-- (BB/U) = Berat Badan Sangat Kurang -->
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Kurang / Potensi
+                                                                        Stunting</strong></td>
+                                                                <td>0/86</td>
+                                                                <td><span class="badge bg-label-primary me-1">0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Normal / Potensi
+                                                                        Stunting</strong></td>
+                                                                <td>35/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.406</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(BB/U) = Berat Badan Sangat Kurang /
+                                                                        Potensi
+                                                                        Stunting</strong></td>
+                                                                <td>0/86</td>
+                                                                <td><span class="badge bg-label-primary me-1">0</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- 6. Menghitung jumlah variabel kelas Tinggi Badan/Umur -->
+                                            <div class="card mt-3">
+                                                <h5 class="card-header">Hasil Perhitungan jumlah variabel kelas
+                                                    Tinggi
+                                                    Badan/Umur (TB/U)</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Variabel (TB/U) / Label Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="table-danger">
+                                                            <!-- TB/U Tinggi - Stunting -->
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Tinggi / Stunting</strong></td>
+                                                                <td>0/25</td>
+                                                                <td><span class="badge bg-label-danger me-1">0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Normal / Stunting</strong></td>
+                                                                <td>0/25</td>
+                                                                <td><span class="badge bg-label-danger me-1">0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Pendek / Stunting</strong></td>
+                                                                <td>11/25</td>
+                                                                <td><span
+                                                                        class="badge bg-label-danger me-1">0.001</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Sangat Pendek /
+                                                                        Stunting</strong>
+                                                                </td>
+                                                                <td>14/25</td>
+                                                                <td><span class="badge bg-label-danger me-1">0.56</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody class="table-success">
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Tinggi / Normal</strong></td>
+                                                                <td>1/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.0006</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Normal / Normal</strong></td>
+                                                                <td>1547/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.966</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Pendek / Normal</strong></td>
+                                                                <td>25/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.001</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Sangat Pendek / Normal</strong>
+                                                                </td>
+                                                                <td>1/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.0006</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody class="table-primary">
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Tinggi / Potensi
+                                                                        Stunting</strong>
+                                                                </td>
+                                                                <td>0/86</td>
+                                                                <td><span class="badge bg-label-primary me-1">0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Normal / Potensi
+                                                                        Stunting</strong>
+                                                                </td>
+                                                                <td>12/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.139</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Pendek / Potensi
+                                                                        Stunting</strong>
+                                                                </td>
+                                                                <td>66/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.767</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>(TB/U) = Sangat Pendek / Potensi
+                                                                        Stunting</strong></td>
+                                                                <td>8/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.093</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- 2.	Menghitung  jumlah variabel kelas BB/TB/Label -->
+                                            <div class="card mt-3">
+                                                <h5 class="card-header">Hasil Perhitungan jumlah variabel kelas
+                                                    (BB/TB) / Label</h5>
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Variabel Status Gizi/Label Training</th>
+                                                                <th>Probabilitas</th>
+                                                                <th>Hasil</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody class="table-border-bottom-0">
+                                                            <tr class="table-danger">
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Gizi Baik/Stunting</strong>
+                                                                </td>
+                                                                <td>3/25</td>
+                                                                <td><span class="badge bg-label-danger me-1">0.12</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-danger">
+                                                                <td><i class="fab fa-vuejs fa-lg text-danger me-3"></i>
+                                                                    <strong>Gizi Kurang/Stunting</strong>
+                                                                </td>
+                                                                <td>22/25</td>
+                                                                <td><span class="badge bg-label-danger me-1">0.88</span>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr class="table-success">
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Gizi Baik/Normal</strong>
+                                                                </td>
+                                                                <td>1595/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.522</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-success">
+                                                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
+                                                                    <strong>Gizi Kurang/Normal</strong>
+                                                                </td>
+                                                                <td>7/1601</td>
+                                                                <td><span
+                                                                        class="badge bg-label-success me-1">0.004</span>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr class="table-primary">
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Gizi Baik/Potensi Stunting</strong>
+                                                                </td>
+                                                                <td>73/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.848</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="table-primary">
+                                                                <td><i class="fab fa-vuejs fa-lg text-primary me-3"></i>
+                                                                    <strong>Gizi Kurang/Potensi Stunting</strong>
+                                                                </td>
+                                                                <td>13/86</td>
+                                                                <td><span
+                                                                        class="badge bg-label-primary me-1">0.151</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div
+                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with 🚀 by
+                                <a href="#" target="_blank" class="footer-link fw-bolder">Dodik Sukma</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <!-- / Layout wrapper -->
+
+
+
+        <!-- JS PLUGIN -->
+        <script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/apex-charts/apexcharts.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+        <script src="{% static 'assets/js/dashboards-analytics.js' %}"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="{% static 'assets/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'assets/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Page level custom scripts -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable(); // ID From dataTable 
+                $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+            });
+        </script>
+</body>
+
+</html>
